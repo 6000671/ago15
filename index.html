@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function byId(id) {
+            return document.getElementById(id).value;
+        }
+        function strarr2num(arreglo, lim)
+        {
+            //Leer datos de vo 
+            var arrs = arreglo.split(lim);
+            arrn =[];
+            arrs.forEach((elem) => {
+                arrn.push(Number(elem))
+            });
+            alert(arrn[0]+arrn[1]+arrn[2]);
+            return arrn;
+        }
+        function traslacion()
+        {
+            //var aos = document.getElementById("vo").value.split(",");
+            aon = strarr2num(byId("vo"), ",")
+            atn = strarr2num(byId("vt"), ",")
+            document.getElementById("vr").value= sum(aon, atn)
+
+        }
+        function escalado()
+        {
+            //var aos = document.getElementById("vo").value.split(",");
+            aon = strarr2num(byId("voe"), ",")
+            atn = strarr2num(byId("vte"), ",")
+            document.getElementById("vr").value= mul(aon, atn)
+
+        }
+        function sum(array1, array2)
+        {
+            return array1.map(function(num, idx){
+                return num + array2[idx]
+            });
+        };
+
+        function mul(array1, array2)
+        {
+            return array1.map(function(num, idx){
+                return num * array2[idx]
+            });
+        };
+    </script>
+</head>
+<body>
+    <p>Vector Original 
+        <input id="vo" size="10">  <!--Vector original-->
+    </p>
+    <p>Vector Traslacion 
+        <input id="vt" size="10">  <!--Vector traslacion-->     
+    </p>
+    <p>Vector Trasladado
+        <input id="vr" size="10"> <!--Vector trasladado-->
+    </p>
+    <button id="btn_tr" onclick="traslacion()">Realizar traslacion</button>
+</body>
+</html>
