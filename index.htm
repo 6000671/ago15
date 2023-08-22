@@ -19,16 +19,47 @@
 
     return matrix;
 }
+      function transformMatrix(matrix, transformationMatrix) {
+    const transformedMatrix = [];
+
+    for (let i = 0; i < matrix.length; i++) {
+        const row = [];
+        for (let j = 0; j < matrix[i].length; j++) {
+            let transformedValue = 0;
+            for (let k = 0; k < transformationMatrix[0].length; k++) {
+                transformedValue += matrix[i][k] * transformationMatrix[k][j];
+            }
+            row.push(transformedValue);
+        }
+        transformedMatrix.push(row);
+    }
+
+    return transformedMatrix;
+}
 
 function main() {
-    const numRows = parseInt(prompt("Enter the number of rows:"));
-    const numCols = parseInt(prompt("Enter the number of columns:"));
+    const numRows = parseInt(prompt("Enter the number of rows for the original matrix:"));
+    const numCols = parseInt(prompt("Enter the number of columns for the original matrix:"));
 
-    const matrix = createMatrix(numRows, numCols);
+    function createMatrix(rows, columns)
 
-    console.log("Matrix created:");
+    console.log("Original Matrix:");
     console.log(matrix);
+
+    const numTransRows = parseInt(prompt("Enter the number of rows for the transformation matrix:"));
+    const numTransCols = parseInt(prompt("Enter the number of columns for the transformation matrix:"));
+
+    const transformationMatrix = createMatrix(numTransRows, numTransCols);
+
+    console.log("Transformation Matrix:");
+    console.log(transformationMatrix);
+
+    const resultMatrix = transformMatrix(matrix, transformationMatrix);
+
+    console.log("Transformed Matrix:");
+    console.log(resultMatrix);
 }
+
         function byId(id) {
             return document.getElementById(id).value;
         }
