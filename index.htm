@@ -5,6 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script>
+        function rotateMatrix(matrix) {
+    const numRows = matrix.length;
+    const numCols = matrix[0].length;
+
+    const rotatedMatrix = [];
+
+    for (let j = 0; j < numCols; j++) {
+        const newRow = [];
+        for (let i = numRows - 1; i >= 0; i--) {
+            newRow.push(matrix[i][j]);
+        }
+        rotatedMatrix.push(newRow);
+    }
+
+    return rotatedMatrix;
+}
         function scaleMatrix(matrix, scalar) {
     const scaledMatrix = [];
 
@@ -18,20 +34,7 @@
 
     return scaledMatrix;
 }
-        function createMatrix(rows, columns) {
-    const matrix = [];
-
-    for (let i = 0; i < rows; i++) {
-        const row = [];
-        for (let j = 0; j < columns; j++) {
-            const value = prompt(`Enter value for matrix[${i}][${j}]:`);
-            row.push(parseFloat(value));
-        }
-        matrix.push(row);
-    }
-
-    return matrix;
-}
+   
       function transformMatrix(matrix, transformationMatrix) {
     const transformedMatrix = [];
 
@@ -49,7 +52,20 @@
 
     return transformedMatrix;
 }
+function createMatrix(rows, columns) {
+    const matrix = [];
 
+    for (let i = 0; i < rows; i++) {
+        const row = [];
+        for (let j = 0; j < columns; j++) {
+            const value = prompt(`Enter value for matrix[${i}][${j}]:`);
+            row.push(parseFloat(value));
+        }
+        matrix.push(row);
+    }
+
+    return matrix;
+}
 function main() {
     const numRows = parseInt(prompt("Enter the number of rows for the original matrix:"));
     const numCols = parseInt(prompt("Enter the number of columns for the original matrix:"));
@@ -83,7 +99,12 @@ function main() {
 
     console.log("Scaled Matrix:");
     console.log(scaledMatrix);
+    const rotatedMatrix = rotateMatrix(matrix);
+
+    console.log("Rotated Matrix:");
+    console.log(rotatedMatrix);
 }
+
 
         function byId(id) {
             return document.getElementById(id).value;
