@@ -5,18 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script>
-        function rotateMatrix(matrix) {
+      function rotateMatrix(matrix, degrees) {
     const numRows = matrix.length;
     const numCols = matrix[0].length;
 
     const rotatedMatrix = [];
 
-    for (let j = 0; j < numCols; j++) {
-        const newRow = [];
-        for (let i = numRows - 1; i >= 0; i--) {
-            newRow.push(matrix[i][j]);
+    // convierte los grados dados al numero de 90 grados necesitado
+    const numRotations = (degrees / 90) % 4;
+
+    for (let rotation = 0; rotation < numRotations; rotation++) {
+        const newRows = [];
+
+        for (let j = 0; j < numCols; j++) {
+            const newRow = [];
+            for (let i = numRows - 1; i >= 0; i--) {
+                newRow.push(matrix[i][j]);
+            }
+            newRows.push(newRow);
         }
-        rotatedMatrix.push(newRow);
+
+        matrix = newRows; // actualiza la matriz para la siguiente rotacion
+        numRows = matrix.length;
+        numCols = matrix[0].length;
     }
 
     return rotatedMatrix;
@@ -99,7 +110,9 @@ function main() {
 
     console.log("Scaled Matrix:");
     console.log(scaledMatrix);
-    const rotatedMatrix = rotateMatrix(matrix);
+    const degrees = parseInt(prompt("Enter the degrees of rotation (multiples of 90):"));
+
+    const rotatedMatrix = rotateMatrix(matrix, degrees);
 
     console.log("Rotated Matrix:");
     console.log(rotatedMatrix);
