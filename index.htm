@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script>
+        function scaleMatrix(matrix, scalar) {
+    const scaledMatrix = [];
+
+    for (let i = 0; i < matrix.length; i++) {
+        const row = [];
+        for (let j = 0; j < matrix[i].length; j++) {
+            row.push(matrix[i][j] * scalar);
+        }
+        scaledMatrix.push(row);
+    }
+
+    return scaledMatrix;
+}
         function createMatrix(rows, columns) {
     const matrix = [];
 
@@ -58,6 +71,18 @@ function main() {
 
     console.log("Transformed Matrix:");
     console.log(resultMatrix);
+
+    const matrix = createMatrix(numRows, numCols);
+
+    console.log("Original Matrix:");
+    console.log(matrix);
+
+    const scalar = parseFloat(prompt("Enter the scalar value for scaling:"));
+
+    const scaledMatrix = scaleMatrix(matrix, scalar);
+
+    console.log("Scaled Matrix:");
+    console.log(scaledMatrix);
 }
 
         function byId(id) {
