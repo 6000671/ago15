@@ -5,27 +5,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script>
-        function traslacion(){
-            //leer datos del Vo
-            var V_o=document.getElementById('Vo').value;
-            V_o=V_o.split(',');
-            vO=[];//crea array vacío
-            V_o.forEach((elem)=>
-            {
-                vO.push(Number(elem))
-            });
+        function createMatrix(rows, columns) {
+    const matrix = [];
 
-            alert(vO[0]+vO[1]+vO[2] );
+    for (let i = 0; i < rows; i++) {
+        const row = [];
+        for (let j = 0; j < columns; j++) {
+            const value = prompt(`Enter value for matrix[${i}][${j}]:`);
+            row.push(parseFloat(value));
         }
+        matrix.push(row);
+    }
+
+    return matrix;
+}
+
+function main() {
+    const numRows = parseInt(prompt("Enter the number of rows:"));
+    const numCols = parseInt(prompt("Enter the number of columns:"));
+
+    const matrix = createMatrix(numRows, numCols);
+
+    console.log("Matrix created:");
+    console.log(matrix);
+}
+        function byId(id) {
+            return document.getElementById(id).value;
+        }
+        function strarr2num(arreglo, lim)
+        {
+            //Leer datos de vo 
+            var arrs = arreglo.split(lim);
+            arrn =[];
+            arrs.forEach((elem) => {
+                arrn.push(Number(elem))
+            });
+            alert(arrn[0]+arrn[1]+arrn[2]);
+            return arrn;
+        }
+        function traslacion()
+        {
+            //var aos = document.getElementById("vo").value.split(",");
+            aon = strarr2num(byId("vo"), ",")
+            atn = strarr2num(byId("vt"), ",")
+            document.getElementById("vr").value= sum(aon, atn)
+
+        }
+        function escalado()
+        {
+            //var aos = document.getElementById("vo").value.split(",");
+            aon = strarr2num(byId("voe"), ",")
+            atn = strarr2num(byId("vte"), ",")
+            document.getElementById("vr").value= mul(aon, atn)
+
+        }
+        function sum(array1, array2)
+        {
+            return array1.map(function(num, idx){
+                return num + array2[idx]
+            });
+        };
+
+        function mul(array1, array2)
+        {
+            return array1.map(function(num, idx){
+                return num * array2[idx]
+            });
+        };
     </script>
 </head>
 <body>
-    <p>Vector Original <input size=13 id="Vo"/>
+    <p>Matriz original
+        <input id="vo" size="10">  <!--Vector original-->
     </p>
-    <p>Vector Traslación <input size=13 id="Vt"/>
+    <p>Matriz Traslacion 
+        <input id="vt" size="10">  <!--Vector traslacion-->     
     </p>
-    <p>Vector Resultado <input size=13 id="Vr"/>
+    <p>Matriz Trasladade
+        <input id="vr" size="10"> <!--Vector trasladado-->
     </p>
-    <button id="btrn_tr" onclick="traslacion()">Realizar traslación</button>
+    <button id="btn_tr" onclick="traslacion()">Realizar traslacion</button>
 </body>
 </html>
